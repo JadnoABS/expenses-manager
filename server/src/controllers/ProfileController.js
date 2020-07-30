@@ -6,7 +6,7 @@ module.exports = {
     async index(req, res) {
         const id = req.headers.authorization;
 
-        const userInfo = await connection('users')
+        const [userInfo] = await connection('users')
             .where('id', id)
             .select('*');
         
