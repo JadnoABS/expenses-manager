@@ -18,8 +18,8 @@ module.exports = {
         };
 
         const tranporter = nodemailer.createTransport({
-            host: "smtp.mailtrap.io",
-            port: 2525,
+            host: "smtp.umbler.com",
+            port: 587,
             auth: {
                 user: account.user,
                 pass: account.pass,
@@ -36,7 +36,9 @@ module.exports = {
             return res.json(message);
         }).catch(err => {
             console.log(err);
-            return res.json(err);
+            return res.status(400).json({
+                error: "err"
+            });
         });
     }
 }

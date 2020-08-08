@@ -1,5 +1,6 @@
 const express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    connection = require('./database/connection');
 
 const SessionController = require('./controllers/SessionController'),
     ProfileController = require('./controllers/ProfileController'),
@@ -8,9 +9,17 @@ const SessionController = require('./controllers/SessionController'),
 
 router.post('/session',  SessionController.create);
 
+router.get('/listall', async (req, res) => {
+    const users = await connection('users')
+        .select('*');
+
+    return res.json(users);
+});
+
 router.get('/profile', ProfileController.index);
 router.post('/profile', ProfileController.create);
 router.put('/profile', ProfileController.update);
+router.put('/profile/password', ProfileController.updatePass);
 router.delete('/profile', ProfileController.delete);
 
 router.get('/expenses', ExpenseController.index);

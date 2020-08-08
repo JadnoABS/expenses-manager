@@ -51,37 +51,64 @@
 
     <script id="expenses-page" type="text/x-handlebars-template">
         <div class="landing">
-            <h3>Nome de usuario</h3>
-            <p>{{name}}</p>
-            <h3>Email</h3>
-            <p>{{email}}</p>
-            <form id="add-expense">
-                <input type="text" placeholder="Título">
-                <input type="text" placeholder="Descrição">
-                <input type="number" placeholder="Valor">
-            </form>
-            <ul>
-                {{#each expenses}}
-                <li>
-                    <ul>
-                        <li>{{this.title}}</li>
-                        <li>Descrição: {{this.description}}</li>
-                        <li>Valor: {{this.value}}</li>
-                    </ul>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+            <div class="user-data">
+                <ul>
+                    <li>Olá {{name}}</li>
+                    <li><a href="/profile">Ver perfil</a></li>
+                    <li><button onclick="logout()" id="logout">Sair</button></li>
+                </ul>
+            </div>
+            <div class="expenses">
+                <div id="revenue">
+                    <h2>Renda Mensal: R$ {{revenue}}</h2>
+                    <h3>Gasto total: R$: {{expensesValue}}</h3>
+                </div>
+                <form onsubmit="createExpense(event)" id="add-expense">
+                    <input name="title" type="text" placeholder="Título">
+                    <input name="description" type="text" placeholder="Descrição">
+                    <input name="value" type="number" placeholder="Valor">
+                    <button>Adicionar Despesa</button>
+                </form>
+                <ul>
+                    {{#each expenses}}
+                    <li>
+                        <ul>
+                            <button onclick="deleteExpense({{this.id}})">Excluir</button>
+                            <li>{{this.title}}</li>
+                            <li>Descrição: {{this.description}}</li>
+                            <li>Valor: R$ {{this.value}}</li>
+                        </ul>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            </div>
     </script>
 
     <script id="login-page" type="text/x-handlebars-template">
         <div class="landing">
             <h3>Acesse sua conta</h3>
             <form id="login-form" onsubmit="handleLogin(event)">
-                <input id="id-input" type="text" name="id" placeholder="Seu ID" required>
+                <input id="name-input" type="text" name="name" placeholder="Nome" required>
+                <input id="pass-input" type="password" name="password" placeholder="Senha" required>
                 <button id="login-button">Continuar</button>
             </form>
             <a href="/">Voltar à pagina inicial</a>
+            <!-- <a href="/idrecover">Esqueceu seu ID?</a> -->
+        </div>
+    </script>
+
+    <script id="profile-page" type="text/x-handlebars-template">
+        <div class="landing">
+            <h3>Seu perfil</h3>
+            <h6>Seu ID: {{id}}</h6>
+            <form>
+                <label for="name-input">Nome:</label>
+                <input type="text" id="name-input" value="{{name}}">
+                <label for="name-input">Email</label>
+                <input type="email" id="email-input" value="{{email}}">
+            </form>
+            <a href="/changepassword">Mudar Senha</a>
         </div>
     </script>
 
@@ -89,5 +116,9 @@
     <script src="scripts/axios/dist/axios.min.js"></script>
     <script src="scripts/vanilla-router/dist/vanilla-router.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/handlers/registration.js"></script>
+    <script src="js/handlers/login.js"></script>
+    <script src="js/handlers/expenses.js"></script>
+    <script src="js/handlers/profile.js"></script>
 </body>
 </html>

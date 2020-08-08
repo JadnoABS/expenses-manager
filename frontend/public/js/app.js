@@ -1,4 +1,3 @@
-
 const app = document.querySelector('#app');
 
 //Load Handlebars templates
@@ -7,7 +6,8 @@ const landingTemplate = Handlebars.compile(document.querySelector('#landing-page
     errorTemplate = Handlebars.compile(document.querySelector('#error-page').innerHTML),
     expensesTemplate = Handlebars.compile(document.querySelector('#expenses-page').innerHTML),
     idTemplate = Handlebars.compile(document.querySelector('#id-page').innerHTML),
-    loginTemplate = Handlebars.compile(document.querySelector('#login-page').innerHTML);
+    loginTemplate = Handlebars.compile(document.querySelector('#login-page').innerHTML),
+    profileTemplate = Handlebars.compile(document.querySelector('#profile-page').innerHTML);
 
 //Rest API Configuration
 const api = axios.create({
@@ -52,6 +52,10 @@ router.add('/login', () => {
 
 router.add('/expenses', () => {
     loadExpenses();
+});
+
+router.add('/profile', () => {
+    loadProfile();
 })
 
 router.navigateTo(window.location.pathname);
@@ -67,69 +71,3 @@ for(let tag of a){
         router.navigateTo(path);
     })
 }
-
-//Handling registration
-const registerForm = document.querySelector('#register-form');
-const loginForm = document.querySelector('#login-form');
-
-
-async function loadExpenses(){
-    try {
-        const profileResponse = await api.get('profile', {
-            headers: {
-                Authorization: localStorage.getItem('userId'),
-            },
-        });
-        const expenseResponse = await api.get('expenses', {
-            headers: {
-                Authorization: localStorage.getItem('userId'),
-            },
-        });
-        console.log(profileResponse)
-
-        let html = expensesTemplate({
-            name: profileResponse.data.name,
-            email: profileResponse.data.email,
-            expenses: expenseResponse.data
-        });
-
-        app.innerHTML = html;
-    } catch(err) {
-        showError(err);
-    }
-}
-
-const handleLogin = async (event) => {
-    event.preventDefault();
-    const idInput = event.target.getElementsByTagName('input')[0];
-    const data = {id: idInput.value};
-
-    try {
-        const response = await api.post('session', data);
-
-        localStorage.setItem('userId', data.id);
-        localStorage.setItem('username', response.data.name);
-
-        router.navigateTo('/expenses');
-    } catch (err) {
-        alert('Falha no login. Tente novamente!');
-    }
-};
-
-async function handleRegister(event){
-    event.preventDefault();
-    const inputs = event.target.getElementsByTagName('input');
-    const data = {};
-
-    for(let input of inputs){
-        data[input.getAttribute('name')] = input.value;
-    };
-
-    try {
-        const response = await api.post('profile', data);
-        alert(`Seu ID de acesso é: ${response.data.id}`);
-        router.navigateTo('/login');
-    } catch (err) {
-        alert('Erro no cadastro, tente novamente!');
-    }
-};
