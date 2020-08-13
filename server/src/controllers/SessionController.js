@@ -23,10 +23,10 @@ module.exports = {
             });
         }
 
-        const [id] = await connection('users')
+        const [response] = await connection('users')
             .where('password', encryptedInputPassword)
-            .select('id');
+            .select('id', 'name');
 
-        return res.json(id);
+        return res.json(response);
     },
 }

@@ -8,12 +8,13 @@ const handleLogin = async (event) => {
         const response = await api.post('session', data);
 
         localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('username', response.data.name);
 
         router.navigateTo('/expenses');
     } catch (err) {
         let error = document.createElement('p');
         error.classList.add('wrong-pass');
-        error.innerHTML = 'Senha Incorreta!';
+        error.innerHTML = 'Nome e/ou Senha Incorretos!';
         event.target.appendChild(error);
     }
 };

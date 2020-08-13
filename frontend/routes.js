@@ -20,10 +20,10 @@ router.post('/session', async (req, res) => {
     }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/user/register', async (req, res) => {
     try {
-        const data = req.body.data;
-        const response = await api.post('register', data);
+        const data = req.body;
+        const response = await api.post('profile', data);
         return res.send(response.data);
     } catch(err) {
         return res.status(500).json({
@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/user/profile', async (req, res) => {
     try {
         const id = req.headers.authorization;
         const response = await api.get('profile', {
@@ -42,14 +42,13 @@ router.get('/profile', async (req, res) => {
         });
         return res.json(response.data);
     } catch(err) {
-        console.log('Jadno voce nao sabe programar e bota a culpa na gnt');
-        // return res.status(500).json({
-        //     error: 'Server request error!'
-        // });
+        return res.status(500).json({
+            error: 'Server request error!'
+        });
     }
 });
 
-router.get('/expenses', async (req, res) => {
+router.get('/user/expenses', async (req, res) => {
     try {
         const id = req.headers.authorization;
         const response = await api.get('expenses', {
@@ -65,7 +64,7 @@ router.get('/expenses', async (req, res) => {
     }
 });
 
-router.post('/expenses', async (req, res) => {
+router.post('/user/expenses', async (req, res) => {
     try {
         const id = req.headers.authorization;
         const expenseData = req.body;
@@ -84,7 +83,45 @@ router.post('/expenses', async (req, res) => {
     }
 });
 
-router.delete('/expenses/:id', async (req, res) => {
+router.put('/user/profile', async (req, res) => {
+    const {name, email} = req.body;
+    const id = req.headers.authorization;
+    
+    try{
+        const response = await api.put('profile', {name, email}, {
+            headers: {
+                Authorization: id,
+            },
+        });
+
+        return res.json(response.data);
+    } catch(err) {
+        return res.status(500).json({
+            error: 'Server request error!'
+        });
+    }
+});
+
+router.put('/user/changepass', async (req, res) => {
+    const { password, newPassword } = req.body;
+    const id = req.headers.authorization;
+
+    try {
+        const response = await api.put('profile/password', { password, newPassword }, {
+            headers: {
+                Authorization: id,
+            },
+        });
+
+        return res.json(response.data);
+    } catch(err) {
+        return res.status(500).json({
+            error: 'Server request error!'
+        });
+    }
+})
+
+router.delete('/user/expenses/:id', async (req, res) => {
     try {
         const id = req.params.id,
             user_id = req.headers.authorization;
@@ -97,6 +134,25 @@ router.delete('/expenses/:id', async (req, res) => {
 
         return res.json(response);
     } catch (err) {
+        return res.status(500).json({
+            error: 'Server request error!'
+        });
+    }
+});
+
+router.put('/revenue', async (req, res) => {
+    try {
+        const revenue = req.body.revenue;
+        const id = req.headers.authorization;
+
+        const response = await api.put('revenue', {revenue}, {
+            headers: {
+                Authorization: id,
+            },
+        });
+
+        return res.json(response.data);
+    } catch(err) {
         return res.status(500).json({
             error: 'Server request error!'
         });

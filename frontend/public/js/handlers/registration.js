@@ -8,8 +8,7 @@ async function handleRegister(event){
     };
 
     try {
-        const response = await api.post('profile', data);
-        alert(`Seu ID de acesso é: ${response.data.id}`);
+        const response = await api.post('user/register', data);
         router.navigateTo('/login');
     } catch (err) {
         alert('Erro no cadastro, tente novamente!');

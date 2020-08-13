@@ -1,0 +1,374 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    font-family: 'arimo', sans-serif;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1){
+    background-image: url(./background/background1.jpg);   
+}
+
+.slideshow li:nth-child(2){
+    background-image: url(./background/background2.jpg);   
+    animation-delay: 10s;
+}
+ 
+.slideshow li:nth-child(3){
+    background-image: url(./background/background3.jpg);   
+    animation-delay: 20s;
+}
+ 
+.slideshow li:nth-child(4){
+    background-image: url(./background/background4.jpg);   
+    animation-delay: 30s;
+}
+ 
+.slideshow li:nth-child(5){
+    background-image: url(./background/background5.jpg);   
+    animation-delay: 40s;
+}
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+}
+ 
+
+@media (min-width: 1900px){
+    body, html{
+        background-size: cover;
+    }
+}
+
+.landing {
+    background-color: #FBF5F3;
+    border: 5px solid #E28413;
+    border-radius: 20px;
+
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    height: 600px;
+    margin: auto;
+    margin-top: 110px;
+    margin-bottom: 110px;
+    padding: 50px;
+}
+
+.landing h3 {
+    font-size: 40px;
+    text-align: center;
+    margin: 10px;
+}
+
+.landing .button-style {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 20px;
+
+    background-color: #E28413;
+    color: #000022;
+
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.landing .landing-button {
+    width: 400px;
+    height: 60px;
+    font-size: 35px;
+    margin-top: 70px;
+}
+
+.landing .input-style {
+    width: 400px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    margin: auto;
+    margin-top: 36px;
+
+    background-color: #FBF5F3;
+    border: 3px solid #E28413;
+    border-radius: 20px;
+
+    color: #000022;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.landing .input-style:focus {
+    outline: none;
+}
+
+.landing .next-button {
+    width: 300px;
+    height: 50px;
+    margin-top: 40px;
+
+    color: #000022;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.back-button {
+    width: 116px;
+    height: 32px;
+    margin-top: 40px;
+
+    background-color: #000022;
+    border-radius: 20px;
+    color: #FBF5F3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.main {
+    background-color: #FBF5F3;
+    border: 5px solid #E28413;
+    border-radius: 20px;
+
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    min-height: 550px;
+    margin: auto;
+    margin-top: 110px;
+    margin-bottom: 110px;
+    padding: 0;
+}
+
+.main .container {
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.main .navbar ul {
+    background-color: #000022;
+    border-radius: 15px 15px 0 0;
+    margin: 0;
+    padding: 0;
+    height: 70px;
+    color: #FBF5F3;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.main .navbar li {
+    margin: auto 2vw;
+    font-size: 3vh;
+}
+
+.main .navbar li a {
+    text-decoration: none;
+    color: #FBF5F3;
+    font-size: 2.5vh;
+}
+
+.main .navbar li button {
+    background-color: transparent;
+    border: none;
+    color: #FBF5F3;
+    font-size: 2.5vh;
+    cursor: pointer;
+}
+
+.main .navbar li a:hover {
+    color: #d3d2d2;
+}
+
+.main .navbar li button:hover {
+    color: #d3d2d2;
+}
+
+.main #revenue-input {
+    width: 150px;
+    border: none;
+    background-color: transparent;
+
+    color: #000022;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.safe {
+    color: #368700;
+}
+
+.alert {
+    color: #c99700;
+}
+
+.danger {
+    color: #782200;
+}
+
+.main #add-expense input {
+    width: 240px;
+    height: 25px;
+
+    border: 3px solid #E28413;
+    border-radius: 20px;
+    outline: none;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.main .submit-button {
+    width: 240px;
+    height: 25px;
+
+    background-color: #E28413;
+    border: none;
+    border-radius: 20px;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.main .expenses > ul {
+    list-style: none;
+    padding: 0;
+    border: 2px solid #888;
+    border-radius: 20px;
+}
+
+.main .expenses > ul > li > ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 20px;
+}
+
+.main .expenses > ul > li > ul > li {
+    background-color: #FFF;
+    border: 2px solid #888;
+    flex-grow: 1;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.main .expenses > ul > li > ul > button {
+    background-color: #DE3C4B;
+    border: 2.5px solid #888;
+    cursor: pointer;
+    font-size: 20px;
+    color: #FFF;
+    transition: font-size 300ms;
+    outline: none;
+}
+
+.main .expenses > ul > li > ul > button:hover {
+    font-size: 25px;
+    color: #ddd;
+}
+
+.main .expenses > ul > li:nth-child(1) > ul > .expense-title:nth-child(1) {
+    border-top-left-radius: 16px;
+}
+
+.main .expenses > ul > li:last-child > ul > .expense-title:nth-child(1) {
+    border-bottom-left-radius: 16px;
+}
+
+.main .expenses > ul > li:nth-child(1) > ul > button {
+    border-top-right-radius: 16px;
+}
+
+.main .expenses > ul > li:last-child > ul > button {
+    border-bottom-right-radius: 16px;
+}
+
+.main .profile-input {
+    width: 300px;
+    height: 25px;
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+
+    border: 3px solid #888;
+    border-radius: 20px;
+    outline: none;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.main .profile-form > .submit-button {
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.main .footer {
+    margin-top: 5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

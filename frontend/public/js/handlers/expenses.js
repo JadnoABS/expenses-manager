@@ -1,11 +1,11 @@
 async function loadExpenses() {
     try {
-        const profileResponse = await api.get('profile', {
+        const profileResponse = await api.get('user/profile', {
             headers: {
                 Authorization: localStorage.getItem('userId'),
             },
         });
-        const expenseResponse = await api.get('expenses', {
+        const expenseResponse = await api.get('user/expenses', {
             headers: {
                 Authorization: localStorage.getItem('userId'),
             },
@@ -26,6 +26,19 @@ async function loadExpenses() {
         });
 
         app.innerHTML = html;
+
+        const expensesSpan = document.querySelector('#expenses-value');
+        if(totalExpensesValue / profileResponse.data.revenue < 0.5){
+            expensesSpan.classList.add('safe');
+            return;
+        } else if(totalExpensesValue / profileResponse.data.revenue < 0.8){
+            expensesSpan.classList.add('alert');
+            return;
+        } else {
+            expensesSpan.classList.add('danger');
+            return;
+        }
+
     } catch(err) {
         showError(err);
     }
@@ -41,7 +54,7 @@ async function createExpense(event) {
     }
 
     try {
-        await api.post('expenses', expenseData, {
+        await api.post('user/expenses', expenseData, {
             headers: {
                 Authorization: user_id
             }
@@ -57,7 +70,7 @@ async function deleteExpense(id) {
     try {
         const user_id = localStorage.getItem('userId');
 
-        await api.delete(`expenses/${id}`, {
+        await api.delete(`user/expenses/${id}`, {
             headers: {
                 Authorization: user_id,
             },

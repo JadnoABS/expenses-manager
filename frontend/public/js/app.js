@@ -5,9 +5,10 @@ const landingTemplate = Handlebars.compile(document.querySelector('#landing-page
     registerTemplate = Handlebars.compile(document.querySelector('#registration-page').innerHTML),
     errorTemplate = Handlebars.compile(document.querySelector('#error-page').innerHTML),
     expensesTemplate = Handlebars.compile(document.querySelector('#expenses-page').innerHTML),
-    idTemplate = Handlebars.compile(document.querySelector('#id-page').innerHTML),
     loginTemplate = Handlebars.compile(document.querySelector('#login-page').innerHTML),
-    profileTemplate = Handlebars.compile(document.querySelector('#profile-page').innerHTML);
+    profileTemplate = Handlebars.compile(document.querySelector('#profile-page').innerHTML),
+    passChangeTemplate = Handlebars.compile(document.querySelector('#password-change-page').innerHTML);
+    
 
 //Rest API Configuration
 const api = axios.create({
@@ -36,6 +37,10 @@ const showError = (error) => {
 
 //Router
 router.add('/', () => {
+    if(localStorage.getItem('userId')){
+        router.navigateTo('/expenses');
+        return;
+    }
     let html = landingTemplate();
     app.innerHTML = html;
 })
@@ -56,6 +61,13 @@ router.add('/expenses', () => {
 
 router.add('/profile', () => {
     loadProfile();
+});
+
+router.add('/changepassword', ()=> {
+    let html = passChangeTemplate({
+        name: localStorage.getItem('username'),
+    });
+    app.innerHTML = html;
 })
 
 router.navigateTo(window.location.pathname);
