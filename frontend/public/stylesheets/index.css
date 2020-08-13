@@ -7,6 +7,11 @@ body, html {
     font-family: 'arimo', sans-serif;
 }
 
+#default {
+    z-index: -1;
+    position: fixed;
+}
+
 .slideshow {
     position: fixed;
     width: 100%;
@@ -34,32 +39,36 @@ body, html {
 }
 
 .slideshow li:nth-child(1){
-    background-image: url(./background/background1.jpg);   
+    opacity: 1;
+    background-image: url(./background/background1.jpg);
 }
 
 .slideshow li:nth-child(2){
-    background-image: url(./background/background2.jpg);   
+    background-image: url(./background/background2.jpg);
+    opacity: 0;
     animation-delay: 10s;
 }
  
 .slideshow li:nth-child(3){
-    background-image: url(./background/background3.jpg);   
+    background-image: url(./background/background3.jpg);
+    opacity: 0;   
     animation-delay: 20s;
 }
  
 .slideshow li:nth-child(4){
-    background-image: url(./background/background4.jpg);   
+    background-image: url(./background/background4.jpg);
+    opacity: 0;   
     animation-delay: 30s;
 }
  
 .slideshow li:nth-child(5){
-    background-image: url(./background/background5.jpg);   
+    background-image: url(./background/background5.jpg);
+    opacity: 0;   
     animation-delay: 40s;
 }
 
 @keyframes imageAnimation {
     0% {
-        opacity: 0;
         animation-timing-function: ease-in;
     }
     10% {

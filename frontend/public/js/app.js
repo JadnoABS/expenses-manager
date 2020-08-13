@@ -68,7 +68,7 @@ router.add('/changepassword', ()=> {
         name: localStorage.getItem('username'),
     });
     app.innerHTML = html;
-})
+});
 
 router.navigateTo(window.location.pathname);
 
@@ -81,5 +81,5 @@ for(let tag of a){
             path = href.substr(href.lastIndexOf('/'));
 
         router.navigateTo(path);
-    })
-}
+    });
+};
