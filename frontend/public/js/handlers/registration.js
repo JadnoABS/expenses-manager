@@ -11,6 +11,10 @@ async function handleRegister(event){
         const response = await api.post('user/register', data);
         router.navigateTo('/login');
     } catch (err) {
-        alert('Erro no cadastro, tente novamente!');
+        let error = document.createElement('p');
+        let renderMessage = event.target.querySelector('error-message');
+        error.classList.add('wrong-pass');
+        error.innerHTML = 'Erro no cadastro, tente novamente!';
+        renderMessage.innerHTML = error;
     }
 };

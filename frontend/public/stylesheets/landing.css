@@ -1,0 +1,94 @@
+.landing {
+    background-color: #FBF5F3;
+    border: 5px solid #E28413;
+    border-radius: 20px;
+
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    height: 600px;
+    margin: auto;
+    margin-top: 110px;
+    margin-bottom: 110px;
+    padding: 50px;
+}
+
+.landing h3 {
+    font-size: 40px;
+    text-align: center;
+    margin: 10px;
+}
+
+.landing .button-style {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 20px;
+
+    background-color: #E28413;
+    color: #000022;
+
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.landing .landing-button {
+    width: 400px;
+    height: 60px;
+    font-size: 35px;
+    margin-top: 70px;
+}
+
+.landing .input-style {
+    width: 400px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    margin: auto;
+    margin-top: 36px;
+
+    background-color: #FBF5F3;
+    border: 3px solid #E28413;
+    border-radius: 20px;
+
+    color: #000022;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.landing .input-style:focus {
+    outline: none;
+}
+
+.landing .next-button {
+    width: 300px;
+    height: 50px;
+    margin-top: 40px;
+
+    color: #000022;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.back-button {
+    width: 116px;
+    height: 32px;
+    margin-top: 40px;
+
+    background-color: #000022;
+    border-radius: 20px;
+    color: #FBF5F3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
+}

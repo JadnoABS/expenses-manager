@@ -12,10 +12,8 @@ const handleLogin = async (event) => {
 
         router.navigateTo('/expenses');
     } catch (err) {
-        let error = document.createElement('p');
-        error.classList.add('wrong-pass');
-        error.innerHTML = 'Nome e/ou Senha Incorretos!';
-        event.target.appendChild(error);
+        let errorMessage = document.querySelector('.error-message');
+        errorMessage.innerHTML = '<p class="wrong-pass">Nome e/ou Senha Incorretos!</p>';
     }
 };
 

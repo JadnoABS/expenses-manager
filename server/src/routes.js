@@ -1,6 +1,5 @@
 const express = require('express'),
-    router = express.Router(),
-    connection = require('./database/connection');
+    router = express.Router();
 
 const SessionController = require('./controllers/SessionController'),
     ProfileController = require('./controllers/ProfileController'),
@@ -8,13 +7,6 @@ const SessionController = require('./controllers/SessionController'),
     EmailController = require('./controllers/EmailController');
 
 router.post('/session',  SessionController.create);
-
-router.get('/listall', async (req, res) => {
-    const users = await connection('users')
-        .select('*');
-
-    return res.json(users);
-});
 
 router.get('/profile', ProfileController.index);
 router.post('/profile', ProfileController.create);
@@ -29,6 +21,6 @@ router.delete('/expenses/:id', ExpenseController.delete);
 
 router.put('/revenue', ProfileController.updateRevenue);
 
-router.post('/retrieveid', EmailController.index);
+//router.post('/retrieveid', EmailController.index);
 
 module.exports = router;

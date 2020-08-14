@@ -29,6 +29,7 @@ const router = new Router({
     }
 });
 
+// Error page
 const showError = (error) => {
     const { title, message } = error.response.data;
     const html = errorTemplate({ color: 'red', title, message });
