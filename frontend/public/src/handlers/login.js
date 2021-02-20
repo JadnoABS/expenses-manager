@@ -1,13 +1,17 @@
 const handleLogin = async (event) => {
     event.preventDefault();
-    const name = event.target.elements["name"].value;
+    const email = event.target.elements["email"].value;
     const password = event.target.elements["password"].value;
-    const data = {name, password};
+
+    const encryptedPass = await CryptoJS.PBKDF2(password, email).toString();
+
+    const data = {email, encryptedPass};
 
     try {
         const response = await api.post('session', data);
 
         localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('email', response.data.email);
         localStorage.setItem('username', response.data.name);
 
         router.navigateTo('/expenses');

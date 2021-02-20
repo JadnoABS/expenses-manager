@@ -1,3 +1,4 @@
+
 async function handleRegister(event){
     event.preventDefault();
     const inputs = event.target.getElementsByTagName('input');
@@ -7,14 +8,17 @@ async function handleRegister(event){
         data[input.getAttribute('name')] = input.value;
     };
 
+    data.password = await CryptoJS.PBKDF2(data.password, data.email).toString();
+
     try {
-        const response = await api.post('user/register', data);
+        const response = await api.post('/user/register', data);
+
         router.navigateTo('/login');
     } catch (err) {
         let error = document.createElement('p');
-        let renderMessage = event.target.querySelector('error-message');
+        let renderMessage = event.target.appendChild(document.createElement('div'));
         error.classList.add('wrong-pass');
-        error.innerHTML = 'Erro no cadastro, tente novamente!';
-        renderMessage.innerHTML = error;
+        error.innerHTML = err.response.data.error || "Erro no cadastro, tente novamente!";
+        renderMessage.appendChild(error);
     }
 };

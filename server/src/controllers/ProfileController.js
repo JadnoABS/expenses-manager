@@ -1,6 +1,5 @@
 const connection = require('../database/connection'),
-    crypto = require('crypto'),
-    bcrypt = require('bcrypt');
+    crypto = require('crypto');
 
 module.exports = {
     async index(req, res) {
@@ -17,16 +16,21 @@ module.exports = {
         const { name, email, password, revenue } = req.body;
         const id = crypto.randomBytes(4).toString('HEX');
 
-        const salt = await bcrypt.genSaltSync(10);
-        const encryptedPass = await bcrypt.hashSync(password, salt);
+        const [existingEmail] = await connection('users')
+            .where('email', email)
+            .select('email');
 
+        if(existingEmail){
+            return res.status(400).json({
+                error: "An account with this email already exists!",
+            })
+        }
 
         await connection('users').insert({
             id,
             name,
             email,
-            password: encryptedPass,
-            salt,
+            password,
             revenue
         });
 
@@ -34,15 +38,14 @@ module.exports = {
     },
 
     async update(req, res) {
-        const { name, email } = req.body;
+        const { name } = req.body;
         const id = req.headers.authorization;
 
         const userInfo = await connection('users')
             .where('id', id)
             .update({
-                name,
-                email
-            }, [name, email]);
+                name
+            }, [name]);
 
         return res.json(userInfo);
     },
@@ -63,22 +66,18 @@ module.exports = {
 
         const [data] = await connection('users')
             .where('id', id)
-            .select('password', 'salt');
+            .select('password');
 
-        let encryptedInputPass = bcrypt.hashSync(password, data.salt);
-
-        if(encryptedInputPass !== data.password){
+        if(password !== data.password){
             return res.status(400).json({
                 error: "Wrong password!"
             })
         };
 
-        let encryptedNewPass = await bcrypt.hashSync(newPassword, data.salt);
-
         const response = await connection('users')
             .where('id', id)
             .update({
-                password: encryptedNewPass
+		password: newPassword
             });
 
         return res.json(response);

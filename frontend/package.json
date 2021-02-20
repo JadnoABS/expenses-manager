@@ -11,14 +11,16 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "vanilla-router": "^1.2.8"
   },
   "devDependencies": {
+    "@types/node": "^14.14.22",
     "nodemon": "^2.0.4"
   }
 }

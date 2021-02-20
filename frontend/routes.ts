@@ -1,35 +1,47 @@
-const express = require('express'),
-    axios = require('axios');
+import { Router } from 'express';
+import axios, { AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
-const router = express.Router();
+const router = Router();
 
 const api = axios.create({
     baseURL: "http://localhost:3333",
     timeout: 5000
 });
 
+interface Profile {
+    name: string,
+    email: string,
+    password: string,
+    revenue: number,
+}
+
+interface Expense {
+    title: string,
+    description: string,
+    value: number
+}
 
 router.post('/session', async (req, res) => {
     try {
-        const userData = req.body;
+        const userData: Profile = req.body;
         const response = await api.post('session', userData);
+        console.log(response);
         return res.send(response.data);
     } catch(err) {
         return res.status(401).json({
-            error: err.response.data.error
+            error: err.response.data
         });
     }
 });
 
 router.post('/user/register', async (req, res) => {
     try {
-        const userData = req.body;
+        const userData: Profile = req.body;
         const { data } = await api.post('profile', userData);
-
-        return res.json(data);
+        return data;
     } catch(err) {
         return res.status(500).json({
-            error: err.response.data.error,
+            error: 'Server request error!'
         })}
 });
 
@@ -68,7 +80,7 @@ router.get('/user/expenses', async (req, res) => {
 router.post('/user/expenses', async (req, res) => {
     try {
         const id = req.headers.authorization;
-        const expenseData = req.body;
+        const expenseData: Expense = req.body;
 
         const { data } = await api.post('expenses', expenseData, {
             headers: {
@@ -117,7 +129,7 @@ router.put('/user/changepass', async (req, res) => {
         return res.json(data);
     } catch(err) {
         return res.status(500).json({
-            error: err.request.data.error
+            error: 'Server request error!'
         });
     }
 })
@@ -160,4 +172,4 @@ router.put('/revenue', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

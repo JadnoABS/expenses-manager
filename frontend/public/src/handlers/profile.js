@@ -44,14 +44,13 @@ async function loadProfile() {
     }
 };
 
-async function changeNameEmail(event) {
+async function changeName(event) {
     event.preventDefault();
     let name = event.target.elements["name"].value,
-        email = event.target.elements["email"].value,
         userId = localStorage.getItem('userId');
 
     try {
-        const response = await api.put('user/profile', {name, email}, {
+        const response = await api.put('user/profile', {name}, {
             headers: {
                 Authorization: userId,
             },
@@ -67,7 +66,8 @@ async function changePass(event) {
     let password = event.target.elements["current-pass"].value,
         newPassword = event.target.elements["new-pass"].value,
         repeatPass = event.target.elements["repeat-pass"].value,
-        id = localStorage.getItem('userId');
+        id = localStorage.getItem('userId'),
+        email = localStorage.getItem('email');
 
     if(newPassword !== repeatPass){
         let error = document.createElement('p');
@@ -76,6 +76,9 @@ async function changePass(event) {
         event.target.appendChild(error);
         return;
     };
+
+    password = await CryptoJS.PBKDF2(password, email).toString(); 
+    newPassword = await CryptoJS.PBKDF2(newPassword, email).toString();
 
     try {
         const response = await api.put('user/changepass', { password, newPassword }, {
