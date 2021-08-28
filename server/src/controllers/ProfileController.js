@@ -41,11 +41,11 @@ module.exports = {
         const { name } = req.body;
         const id = req.headers.authorization;
 
-        const userInfo = await connection('users')
-            .where('id', id)
+        const [userInfo] = await connection('users')
+            .where({ id })
             .update({
                 name
-            }, [name]);
+            }, ['name']);
 
         return res.json(userInfo);
     },
@@ -77,7 +77,7 @@ module.exports = {
         const response = await connection('users')
             .where('id', id)
             .update({
-		password: newPassword
+              password: newPassword
             });
 
         return res.json(response);
@@ -85,14 +85,14 @@ module.exports = {
 
     async updateRevenue(req, res) {
         const id = req.headers.authorization;
-        const newRevenue = req.body.revenue;
+        const { revenue } = req.body;
 
-        const revenue = await connection('users')
+        const [dbResponse] = await connection('users')
             .where('id', id)
             .update({
-                revenue: newRevenue
-            });
+                revenue
+            }, ['revenue']);
 
-        return res.json(newRevenue);
+        return res.json(dbResponse);
     }
 }

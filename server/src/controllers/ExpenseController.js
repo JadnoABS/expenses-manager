@@ -16,15 +16,15 @@ module.exports = {
         const user_id = req.headers.authorization;
         const { title, description, value } = req.body;
 
-        const [id] = await connection('expenses')
+        const [expensesData] = await connection('expenses')
             .insert({
                 title,
                 description,
                 value,
                 user_id
-            });
+            }, ['title', 'description', 'value']);
 
-        return res.json(id);
+        return res.json(expensesData);
     },
 
     async update(req, res) {

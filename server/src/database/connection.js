@@ -1,5 +1,5 @@
 const knex = require('knex'),
     configuration = require('../../knexfile'),
-    connection = knex(configuration.development);
+    connection = knex(configuration);
 
 module.exports = connection;
