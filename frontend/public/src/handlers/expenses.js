@@ -14,7 +14,7 @@ async function loadExpenses() {
         var totalExpensesValue = 0;
 
         for(let expense of expenseResponse.data){
-            totalExpensesValue += expense.value;
+            totalExpensesValue += parseFloat(expense.value);
         };
 
         let html = expensesTemplate({

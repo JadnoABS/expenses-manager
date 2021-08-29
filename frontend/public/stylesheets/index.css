@@ -13,6 +13,19 @@ body, html {
     }
 }
 
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+a:hover, button:hover {
+  filter: brightness(0.8);
+}
+
 .error-message {
     color: #de3c4b;
     margin-left: 50px;

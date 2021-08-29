@@ -5,7 +5,7 @@ const handleLogin = async (event) => {
 
     const encryptedPass = await CryptoJS.PBKDF2(password, email).toString();
 
-    const data = {email, encryptedPass};
+    const data = {email, password: encryptedPass};
 
     try {
         const response = await api.post('session', data);

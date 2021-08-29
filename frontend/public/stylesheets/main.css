@@ -2,21 +2,28 @@
     background-color: #FBF5F3;
     border: 5px solid #E28413;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     position: relative;
     z-index: 1;
+    width: 80%;
     max-width: 1200px;
     min-height: 550px;
-    margin: auto;
-    margin-top: 110px;
-    margin-bottom: 110px;
+    margin: 2em 0;
     padding: 0;
 }
 
 .main .container {
     margin-top: 30px;
+    width: 90%;
     margin-left: 70px;
     margin-right: 70px;
+}
+
+.main .navbar {
+  width: 100%;
 }
 
 .main .navbar ul {
@@ -81,8 +88,13 @@
     color: #782200;
 }
 
+.main #add-expense {
+  display: flex;
+  align-items: center;
+}
+
 .main #add-expense input {
-    width: 240px;
+    width: 25%;
     height: 25px;
 
     border: 3px solid #E28413;
@@ -95,7 +107,7 @@
 }
 
 .main .submit-button {
-    width: 240px;
+    width: 25%;
     height: 25px;
 
     background-color: #E28413;
@@ -166,7 +178,8 @@
 }
 
 .main .profile-input {
-    width: 300px;
+    width: 80%;
+    max-width: 300px;
     height: 25px;
     display: flex;
     margin: auto;
@@ -193,4 +206,56 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media(max-width: 600px){
+
+  .main #add-expense {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .main #add-expense input,
+  .main .submit-button {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .main .expenses > ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main .expenses > ul > li {
+    margin-bottom: 20px;
+  }
+
+  .main .expenses > ul > li > ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main .expenses > ul > li > ul > .expense-title:nth-child(1) {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+  }
+
+
+  .main .expenses > ul > li:nth-child(1) > ul > button {
+    border-top-right-radius: 0;
+  }
+
+  .main .expenses > ul > li:last-child > ul > .expense-title:nth-child(1){
+    border-bottom-left-radius: 0;
+  }
+
+  .main .expenses > ul > li > ul > button {
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+  }
+  
+  .main .expenses > ul > li:last-child {
+    margin-bottom: 0;
+  }
+
 }

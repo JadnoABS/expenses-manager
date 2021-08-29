@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="An expenses manager web app"/>
     <link rel="stylesheet" href="scripts/@fortawesome/fontawesome-free/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./stylesheets/background.css">
     <link rel="stylesheet" href="./stylesheets/index.css">
     <link rel="stylesheet" href="./stylesheets/landing.css">
     <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="manifest" href="manifest.json">
+
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+
     <title>Administrador de Despesas</title>
 </head>
 <body>
@@ -84,7 +93,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="container">
+            <section class="container">
                 <div id="revenue">
                     <h2>
                         Renda Mensal: R$ 
@@ -92,12 +101,14 @@
                     </h2>
                     <h3>Gasto total: R$ <span id="expenses-value">{{expensesValue}}</span></h3>
                 </div>
+                <div class="expense-input">
                 <form onsubmit="createExpense(event)" id="add-expense">
                     <input name="title" type="text" placeholder="Título">
                     <input name="description" type="text" placeholder="Descrição">
-                    <input name="value" type="number" placeholder="Valor">
+                    <input name="value" step="0.01" type="number" placeholder="Valor">
                     <button class="submit-button">Adicionar Despesa</button>
-                </form>                
+                </form>
+                </div>
                 <section class="expenses">
                     <ul>
                         {{#each expenses}}
@@ -114,7 +125,7 @@
                         {{/each}}
                     </ul>
                 </section>
-            </div>
+            </section>
             </div>
     </script>
 
@@ -142,7 +153,7 @@
                 <h1 style="text-align: center;">Seu perfil</h3>
                     <form class="profile-form" onsubmit="changeName(event)">
                         <input name="name" class="profile-input" type="text" id="name-input" placeholder="Nome" value="{{name}}">
-                        <input contenteditable="false" name="email" class="profile-input" type="email" id="email-input" placeholder="Email" value="{{email}}">
+                        <input contenteditable="false" name="email" class="profile-input" type="email" id="email-input" placeholder="Email" value="{{email}}" disabled>
                         <button class="submit-button">Editar</button>
                     </form>
                 <section class="footer">

@@ -2,14 +2,16 @@
     background-color: #FBF5F3;
     border: 5px solid #E28413;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     position: relative;
     z-index: 1;
+    width: 50%;
     max-width: 500px;
-    height: 600px;
-    margin: auto;
-    margin-top: 110px;
-    margin-bottom: 110px;
+    max-height: 600px;
+    margin: 2em 0;
     padding: 50px;
 }
 
@@ -18,6 +20,7 @@
     text-align: center;
     margin: 10px;
 }
+
 
 .landing .button-style {
     display: flex;
@@ -37,14 +40,15 @@
 }
 
 .landing .landing-button {
-    width: 400px;
+    width: 100%;
     height: 60px;
-    font-size: 35px;
+    font-size: 30px;
     margin-top: 70px;
 }
 
+
 .landing .input-style {
-    width: 400px;
+    width: 100%;
     height: 50px;
     box-sizing: border-box;
     display: flex;
@@ -66,7 +70,7 @@
 }
 
 .landing .next-button {
-    width: 300px;
+    width: 100%;
     height: 50px;
     margin-top: 40px;
 
@@ -91,4 +95,16 @@
     text-align: center;
     font-weight: 700;
     text-decoration: none;
+}
+
+@media(max-width: 600px){
+  .landing h3 {
+    font-size: 30px;
+  }
+
+  .landing .landing-button,
+  .landing .input-style,
+  .landing .next-button {
+    font-size: 20px;
+  }
 }

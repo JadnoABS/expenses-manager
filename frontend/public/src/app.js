@@ -12,7 +12,7 @@ const landingTemplate = Handlebars.compile(document.querySelector('#landing-page
 
 //Rest API Configuration
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+  baseURL: `http://localhost:${process.env.PORT}`,
     timeout: 50000
 });
 
