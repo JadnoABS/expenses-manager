@@ -210,6 +210,10 @@
 
 @media(max-width: 600px){
 
+  .main {
+    width: 100%;
+  }
+
   .main #add-expense {
     flex-direction: column;
     justify-content: space-between;
@@ -240,7 +244,6 @@
       border-top-right-radius: 16px;
   }
 
-
   .main .expenses > ul > li:nth-child(1) > ul > button {
     border-top-right-radius: 0;
   }
@@ -253,7 +256,7 @@
     border-bottom-right-radius: 16px;
     border-bottom-left-radius: 16px;
   }
-  
+
   .main .expenses > ul > li:last-child {
     margin-bottom: 0;
   }

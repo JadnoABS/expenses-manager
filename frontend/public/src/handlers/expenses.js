@@ -1,15 +1,18 @@
 async function loadExpenses() {
     try {
-        const profileResponse = await api.get('user/profile', {
+      const profileResponse = await api.get('/user/profile', {
             headers: {
                 Authorization: localStorage.getItem('userId'),
             },
         });
-        const expenseResponse = await api.get('user/expenses', {
+      const expenseResponse = await api.get('/user/expenses', {
             headers: {
                 Authorization: localStorage.getItem('userId'),
             },
         });
+
+        console.log(profileResponse);
+        console.log(expenseResponse);
 
         var totalExpensesValue = 0;
 

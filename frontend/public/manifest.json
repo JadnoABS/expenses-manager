@@ -1,8 +1,16 @@
 {
   "short_name": "Expenses Man.",
   "name": "Expenses Manager",
-  "start_url": "/index.html",
+  "start_url": "https://expenses-mng.herokuapp.com",
+  "description": "An application for managing your monthly expenses",
   "background_color": "#000000",
   "display": "standalone",
-  "theme_color": "#E28413"
+  "theme_color": "#E28413",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/stylesheets/background/background1.jpg",
+      "type": "image/png", "sizes": "72x72"
+    }
+  ]
 }

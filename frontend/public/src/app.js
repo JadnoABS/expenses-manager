@@ -8,13 +8,20 @@ const landingTemplate = Handlebars.compile(document.querySelector('#landing-page
     loginTemplate = Handlebars.compile(document.querySelector('#login-page').innerHTML),
     profileTemplate = Handlebars.compile(document.querySelector('#profile-page').innerHTML),
     passChangeTemplate = Handlebars.compile(document.querySelector('#password-change-page').innerHTML);
-    
 
 //Rest API Configuration
 const api = axios.create({
-  baseURL: `http://localhost:${process.env.PORT}`,
-    timeout: 50000
+  baseURL: "https://expenses-mng.herokuapp.com",
+  timeout: 50000,
 });
+
+const config = {
+  responseType: 'json',
+  headers: {
+    'content-type': 'application/json',
+    'accept': 'application/json'
+  },
+}
 
 //Route configuration
 const router = new Router({

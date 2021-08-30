@@ -18,7 +18,7 @@ async function handleRegister(event){
         let error = document.createElement('p');
         let renderMessage = event.target.appendChild(document.createElement('div'));
         error.classList.add('wrong-pass');
-        error.innerHTML = err.response.data.error || "Erro no cadastro, tente novamente!";
+        error.innerHTML = "Erro no cadastro, tente novamente!";
         renderMessage.appendChild(error);
     }
 };

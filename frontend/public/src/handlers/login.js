@@ -8,7 +8,7 @@ const handleLogin = async (event) => {
     const data = {email, password: encryptedPass};
 
     try {
-        const response = await api.post('session', data);
+        const response = await api.post('session', data, config);
 
         localStorage.setItem('userId', response.data.id);
         localStorage.setItem('email', response.data.email);

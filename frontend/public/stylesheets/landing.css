@@ -98,6 +98,11 @@
 }
 
 @media(max-width: 600px){
+
+  .landing {
+    width: 100%;
+  }
+
   .landing h3 {
     font-size: 30px;
   }
