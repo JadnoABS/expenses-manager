@@ -4,6 +4,14 @@ Aplicação Web cujo objetivo é facilitar a administração de suas despesas.
 
 <img src="./Demonstração.png">
 
+## Como rodar
+
+- Dependências: `docker`, `docker-compose`, `make`
+- Buildar e subir projeto: `make rebuild`
+- Subir o projeto: `make start`
+- Ver logs: `make logs`
+- Desligar o projeto: `make stop`
+
 ## Como utilizar
 
 - Crie a sua conta
