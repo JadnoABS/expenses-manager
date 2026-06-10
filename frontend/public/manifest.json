@@ -1,7 +1,7 @@
 {
   "short_name": "Expenses Man.",
   "name": "Expenses Manager",
-  "start_url": "https://expenses-mng.herokuapp.com",
+  "start_url": "http://localhost:3000",
   "description": "An application for managing your monthly expenses",
   "background_color": "#000000",
   "display": "standalone",

@@ -39,7 +39,6 @@ async function loadProfile() {
             return;
         }
     } catch(err) {
-        console.log(err);
         showError(err);
     }
 };

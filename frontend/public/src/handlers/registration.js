@@ -8,8 +8,6 @@ async function handleRegister(event){
         data[input.getAttribute('name')] = input.value;
     };
 
-    data.password = await CryptoJS.PBKDF2(data.password, data.email).toString();
-
     try {
         const response = await api.post('/user/register', data);
 

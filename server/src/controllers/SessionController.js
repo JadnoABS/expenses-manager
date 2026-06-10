@@ -1,4 +1,5 @@
-const connection = require('../database/connection');
+const connection = require('../database/connection'),
+    bcrypt = require('bcryptjs');
 
 module.exports = {
   async create(req, res) {
@@ -6,7 +7,7 @@ module.exports = {
 
     const [credentials] = await connection('users')
         .where('email', email)
-        .select('password');
+        .select('password', 'id');
 
     if(!credentials){
         return res.status(400).json({
@@ -14,14 +15,15 @@ module.exports = {
         });
     }
 
-    if(password !== credentials.password){
+    const passwordMatch = await bcrypt.compare(password, credentials.password);
+    if(!passwordMatch){
         return res.status(401).json({
             error: "Wrong password!"
         });
     }
 
     const [response] = await connection('users')
-        .where('password', password)
+        .where('id', credentials.id)
         .select('id', 'name', 'email');
 
     return res.json(response);

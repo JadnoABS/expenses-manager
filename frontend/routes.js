@@ -17,7 +17,6 @@ router.post('/session', async (req, res) => {
     const response = await api.post('session', userData);
     return res.send(response.data);
   } catch(err) {
-    console.log(err);
     return res.status(401).json({
       error: err.response.data,
     });

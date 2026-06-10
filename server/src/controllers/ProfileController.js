@@ -1,5 +1,6 @@
 const connection = require('../database/connection'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    bcrypt = require('bcryptjs');
 
 module.exports = {
     async index(req, res) {
@@ -15,6 +16,7 @@ module.exports = {
     async create(req, res) {
         const { name, email, password, revenue } = req.body;
         const id = crypto.randomBytes(4).toString('HEX');
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const [existingEmail] = await connection('users')
             .where('email', email)
@@ -30,7 +32,7 @@ module.exports = {
             id,
             name,
             email,
-            password,
+            password: hashedPassword,
             revenue
         });
 

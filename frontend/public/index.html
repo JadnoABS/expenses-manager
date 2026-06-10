@@ -14,30 +14,22 @@
     <link rel="manifest" href="manifest.json">
 
     <script>
-/*      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function() {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then(res => console.log("service worker registered", res))
-            .catch(err => console.log("service worker not registered", err))
-        })
-     }*/
-
- if (!navigator.serviceWorker.controller) {
-     navigator.serviceWorker.register("/sw.js").then(function(reg) {
-         console.log("Service worker has been registered for scope: " + reg.scope);
-     });
- }
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker
+                .register("/sw.js")
+                .then(res => console.log("service worker registered", res))
+                .catch(err => console.log("service worker not registered", err))
+            })
+        }
     </script>
 
     <title>Administrador de Despesas</title>
 </head>
 <body>
     <div id="app">
-        <!-- The templates will be rendered here! -->
     </div>
 
-    <!-- Background slideshow -->
     <ul class="slideshow">
         <li></li>
         <li></li>
@@ -45,8 +37,6 @@
         <li></li>
         <li></li>
     </ul>
-
-    <!-- Handlebars Templates -->
 
     <script id="error-page" type="text/x-handlebars-template">
         <div class="landing">
@@ -203,12 +193,10 @@
         </div>
     </script>
 
-    <!-- Libs and scripts -->
-
     <script src="scripts/handlebars/dist/handlebars.min.js"></script>
-    <script src="scripts/crypto-js/crypto-js.js"></script>
     <script src="scripts/axios/dist/axios.min.js"></script>
     <script src="scripts/vanilla-router/dist/vanilla-router.min.js"></script>
+    <script src="src/api/api-services.js"></script>
     <script src="src/handlers/expenses.js"></script>
     <script src="src/handlers/profile.js"></script>
     <script src="src/handlers/registration.js"></script>

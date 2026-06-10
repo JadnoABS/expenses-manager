@@ -1,8 +1,9 @@
 const dotenv = require("dotenv").config();
 const pg = require('pg');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-pg.defaults.ssl = true;
+if (process.env.NODE_ENV === 'production') {
+    pg.defaults.ssl = { rejectUnauthorized: false };
+}
 module.exports = {
   client: 'pg',
   connection: {

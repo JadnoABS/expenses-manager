@@ -9,12 +9,6 @@ const landingTemplate = Handlebars.compile(document.querySelector('#landing-page
     profileTemplate = Handlebars.compile(document.querySelector('#profile-page').innerHTML),
     passChangeTemplate = Handlebars.compile(document.querySelector('#password-change-page').innerHTML);
 
-//Rest API Configuration
-const api = axios.create({
-  baseURL: "https://expenses-mng.herokuapp.com",
-  timeout: 50000,
-});
-
 const config = {
   responseType: 'json',
   headers: {
@@ -23,7 +17,6 @@ const config = {
   },
 }
 
-//Route configuration
 const router = new Router({
     mode: 'history',
     page404: (path) => {
@@ -36,14 +29,12 @@ const router = new Router({
     }
 });
 
-// Error page
 const showError = (error) => {
     const { title, message } = error.response.data;
     const html = errorTemplate({ color: 'red', title, message });
     app.innerHTML = html;
 };
 
-//Router
 router.add('/', () => {
     if(localStorage.getItem('userId')){
         router.navigateTo('/expenses');
